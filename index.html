@@ -1,0 +1,44 @@
+<html>
+    <head>    
+        <style>
+            #LoadViewsbyPageId{
+                display: none;
+                border: 1px solid gray;
+                margin: 5%;
+                padding: 2%;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Select Page Demo</h2>
+        <label>Page Name</label>
+                    <select id="GetViewsbyPageId" >
+                        <option value="0" >Select Page</option>
+                        <option value="1" >Page 1</option>
+                        <option value="2" >Page 2</option>
+                        <option value="3" >Page 3</option>
+                    </select>
+        
+        <div id ="LoadViewsbyPageId">
+                                     
+        </div>         
+    
+        <script src="jquery-1.11.3.js"></script>
+        <script>
+              document.getElementById("GetViewsbyPageId").onchange = function () {
+                var pageId = $("#GetViewsbyPageId").val();
+                if (pageId != 0) {
+                    $("#LoadViewsbyPageId").show();
+                    $.get('page'+pageId+".html",function (data) {
+                        /* data is the pure html returned from get method, load it to your page */
+                        $('#LoadViewsbyPageId').html(data);      
+
+                    });
+                } else {
+                    $("#LoadViewsbyPageId").hide();
+
+                }
+             }        
+        </script>
+    </body>
+</html>
